@@ -16,7 +16,7 @@
       <div class="jumbotron text-center">
         <h1>Mission to Mars</h1>
         <!-- Add a button to activate scraping script -->
-        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        <p><a class="btn btn-success btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
       </div>
       <!-- Add section for Mars News -->
       <div class="row" id="mars-news">
@@ -25,7 +25,7 @@
             <div class="media-body">
               <h2>Latest Mars News</h2>
               <h4 class="media-heading">{{ mars.news_title }}</h4>
-              <p>{{ mars.news_p }}</p>
+              <p>{{ mars.news_paragraph }}</p>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="col-md-8">
           <h2>Featured Mars Image</h2>
           <img
-            src="{{mars.img_url }}"
+            src="{{mars.featured_image |default('static/images/error.png', true) }}"
             class="img-responsive"
             alt="Responsive image"
           />
@@ -43,27 +43,37 @@
         <div class="col-md-4">
           <!-- Mars Facts -->
           <div class="row" id="mars-facts">
-            <h4>Mars Facts</h4>
-            {{ mars.mars_facts | safe }}
+            <h3>Mars Facts</h3>
+            <h3>{{ mars.facts | safe }}</h3>
           </div>
         
         </div>
       </div>
+
+      <br>
+      <br>
+      <div class="container">
       <div class="row" id="mars-hemis">
+        <div class= "col-lg-12">
         <h2 class="align-items-center">Featured Hemspheres</h2>
         </div>
-        {% for items in mars.hemisphere_image_urls %}
+        {% for items in mars.dict_hem_image %}
         <div class="col-md-6">
-          <div>
-            <img src="{{items.img_url | safe}}">
+          <div class="thumbnail">
+           <img src="{{items.img_url | safe}}">
 
-          </div>
+          <div class="card-body">
+          <h4 class="card-text">{{items.title | safe}}</h4>
         </div>
-        <div>
-          <h4>{{items.title | safe}}</h4>
-        </div>
-        {% endfor %}
-        </div>
+      </div>
     </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
+
 </html>

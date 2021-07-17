@@ -40,7 +40,8 @@ def scrape_hems():
     # ## JPL Space Images Featured Image
 
     # Visit URL
-    url = 'https://spaceimages-mars.com'
+    # url = 'https://www.jpl.nasa.gov'
+    url="https://spaceimages-mars.com"
     browser.visit(url)
 
 
@@ -59,8 +60,9 @@ def scrape_hems():
     img_url_rel
 
     # Use the base url to create an absolute url
-    img_url = f'https://spaceimages-mars.com/{img_url_rel}'
-    img_url
+    # img_url_space = f'https://www.jpl.nasa.gov/{img_url_rel}'
+    img_url_space = f'https://spaceimages-mars.com/{img_url_rel}'
+    img_url_space
 
 
     # ### Mars Facts
@@ -126,7 +128,7 @@ def scrape_hems():
 
         "news_title": news_title,
         "news_paragraph": news_p,
-        "featured_image": img_url,
+        "featured_image": img_url_space,
         "facts": mars_facts,
         # "last_modified": dt.datetime.now(),
         "dict_hem_image": hemisphere_image_urls        
